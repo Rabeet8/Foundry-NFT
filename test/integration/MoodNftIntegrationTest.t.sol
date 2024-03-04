@@ -8,9 +8,9 @@ import {DeployMoodNft} from "../../script/DeployMoodNft.s.sol";
 contract MoodNftIntegrationTest is Test{
 
     MoodNft moodNft;
-    string public constant HAPPY_SVG_URI = "";
+    string public constant HAPPY_SVG_IMAGE_URI = "";
+    string public constant SAD_SVG_IMAGE_URI = "";
     string public constant SAD_SVG_URI = "";
-
     DeployMoodNft deployer;
 
     address USER = makeAddr("user");
@@ -34,7 +34,7 @@ contract MoodNftIntegrationTest is Test{
         vm.prank(USER);
         moodNft.flipMood(0);
 
-        assert(keccak256(abi.encodePacked(moodNft.tokenURI(0))) == keccak256(abi.encodePacked(SAD_SVG_URI)) );
+        assertEq(keccak256(abi.encodePacked(moodNft.tokenURI(0))), keccak256(abi.encodePacked(SAD_SVG_URI)) );
     }
 
 }
